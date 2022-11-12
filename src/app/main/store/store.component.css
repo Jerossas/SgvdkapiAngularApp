@@ -1,0 +1,21 @@
+.price {
+    float: right;
+    background-color: cornflowerblue;
+    border-radius: 15px;
+}
+
+.pages {
+    float: right;
+}
+
+.page-size {
+    float: left;
+}
+
+.add-to-cart {
+    float: right;
+}
+
+app-cart-summary {
+    float: right;
+}
