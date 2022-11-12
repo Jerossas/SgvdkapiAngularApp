@@ -16,7 +16,7 @@ export class AccountManagementService {
   private apiUrl;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'http://192.168.1.11:8080/api/admin/account/';
+    this.apiUrl = 'http://localhost:8080/api/admin/account/';
 
     this.http.get<AccountC[]>(this.apiUrl + 'list').subscribe(
       data => {

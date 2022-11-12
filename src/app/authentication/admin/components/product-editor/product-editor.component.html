@@ -15,12 +15,11 @@
 
     <div class="form-group">
         <label>Account Type</label>
-        <select class="form-control" [(ngModel)]="account.accountType">
+        <select class="form-control" [(ngModel)]="account.accountType" [value]="account.accountType">
             <option *ngFor="let accountType of accountTypes" [ngValue]="accountType">
                 {{ accountType }}
             </option>
         </select>
-        <input class="form-control" name="account-type" [(ngModel)]="account.accountType" />
     </div>
     <div class="form-group">
         <label>Description</label>

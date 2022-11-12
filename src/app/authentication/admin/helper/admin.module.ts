@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
 import { AuthComponent } from "../../auth/auth.component";
 import { AdminComponent } from "../admin.component";
 import { AuthGuard } from "../../auth/helper/auth.guard";
 import { ProductEditorComponent } from "../components/product-editor/product-editor.component";
 import { ProductTableComponent } from "../components/product-table/product-table.component";
+import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 
 let routing = RouterModule.forChild([
     { path: "auth", component: AuthComponent },

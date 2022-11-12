@@ -11,6 +11,7 @@ import { AccountManagementService } from '../../service/account-management.servi
 export class ProductEditorComponent {
 
   editing: boolean = false;
+  spectating: boolean = false;
   account: AccountC = new AccountC();
 
   constructor(private accountManagementService: AccountManagementService, 
@@ -25,7 +26,7 @@ export class ProductEditorComponent {
   }
   save(form: NgForm) {
     this.accountManagementService.saveAccountRequest(this.account);
-    this.router.navigateByUrl("/admin/main/products");
+    this.router.navigateByUrl("/admin/main/accounts");
   }
 
   get accountTypes(): string[] {

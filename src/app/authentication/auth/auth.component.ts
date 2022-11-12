@@ -10,7 +10,7 @@ import { StorageService } from './service/storage.service';
 })
 export class AuthComponent implements OnInit {
 
-  public username: string;
+  public email: string;
   public password: string;
   public errorMessage: string;
 
@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
   roles: string[] = [];
 
   constructor(private router: Router, private auth: AuthService, private storageService: StorageService) {
-    this.username = "";
+    this.email = "";
     this.password = "";
     this.errorMessage = "";
   }
@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
 
   authenticate(form: NgForm) {
     if (form.valid) {
-      this.auth.signin(this.username, this.password).subscribe({
+      this.auth.signin(this.email, this.password).subscribe({
         next: data => {
           this.storageService.saveUser(data);
   

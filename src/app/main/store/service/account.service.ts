@@ -13,7 +13,7 @@ export class AccountService {
   private apiUrl;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'http://192.168.1.11:8080/api/public/account';
+    this.apiUrl = 'http://localhost:8080/api/public/account';
 
     this.http.get<AccountViewDto[]>(this.apiUrl + '/list').subscribe(
       data => {
