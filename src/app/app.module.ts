@@ -10,6 +10,9 @@ import { CheckoutComponent } from './main/cart/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import { StoreFirstGuard } from './main/store/helper/storeFirst.guard';
 import { httpInterceptorProviders } from './authentication/auth/helper/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignupComponentComponent } from './main/store/components/signup-component/signup-component.component';
+import { AuthComponent } from './authentication/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,11 @@ import { httpInterceptorProviders } from './authentication/auth/helper/auth.inte
     HttpClientModule,
     StoreModule,
     RouterModule.forRoot([
+      
+      { 
+        path: "auth", component: AuthComponent,
+        canActivate: [StoreFirstGuard] 
+      },
       {
         path: "store", component: StoreComponent,
         canActivate: [StoreFirstGuard]
@@ -37,8 +45,13 @@ import { httpInterceptorProviders } from './authentication/auth/helper/auth.inte
         loadChildren: () => import("./authentication/admin/helper/admin.module").then(x => x.AdminModule),
         canActivate: [StoreFirstGuard]
       },
+      {
+        path: "sign-up", component: SignupComponentComponent,
+        canActivate: [StoreFirstGuard]
+      },
       { path: "**", redirectTo: "/store" }
-    ])],
+    ]),
+    BrowserAnimationsModule],
   providers: [StoreFirstGuard, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

@@ -2,12 +2,10 @@
     <h5>{{editing ? "Edit" : "Create"}} Account</h5>
 </div>
 <form novalidate #form="ngForm" (ngSubmit)="save(form)">
-
     <div class="form-group">
         <label>Email</label>
         <input class="form-control" name="email" [(ngModel)]="account.email" />
     </div>
-
     <div class="form-group">
         <label>Password</label>
         <input class="form-control" name="password" [(ngModel)]="account.password" />
@@ -15,31 +13,35 @@
 
     <div class="form-group">
         <label>Account Type</label>
-        <select class="form-control" [(ngModel)]="account.accountType" [value]="account.accountType">
-            <option *ngFor="let accountType of accountTypes" [ngValue]="accountType">
-                {{ accountType }}
+        <select class="form-control" name="account-type" (change)="update($event)">
+            <option *ngFor="let accountType of accountTypes"
+            [selected]="accountType.name === currentAccountType"
+            [value]="accountType.name">
+                {{ accountType.name }}
             </option>
         </select>
     </div>
+
     <div class="form-group">
         <label>Description</label>
         <textarea class="form-control" name="description" [(ngModel)]="account.description">
         </textarea>
     </div>
+
     <div class="form-group">
         <label>Price</label>
         <input class="form-control" name="price" [(ngModel)]="account.price" />
     </div>
 
     <div class="form-group">
-        <label>Image Url</label>
-        <input class="form-control" name="img-url" [(ngModel)]="account.imageUrl" />
+        <label>Img URL</label>
+        <input class="form-control" name="image-url" [(ngModel)]="account.imageUrl" />
     </div>
 
     <button type="submit" class="btn btn-primary" [class.btn-warning]="editing">
         {{editing ? "Save" : "Create"}}
     </button>
-    <button type="reset" class="btn btn-secondary" routerLink="/admin/main/products">
+    <button type="reset" class="btn btn-secondary" routerLink="/admin/main/accounts">
         Cancel
     </button>
 </form>

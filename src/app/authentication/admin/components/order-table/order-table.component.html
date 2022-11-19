@@ -1,0 +1,45 @@
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Creation Date</th>
+            <th>User name</th>
+            <th colspan="4">Cart</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="getOrders().length == 0">
+            <td colspan="5">There are no orders</td>
+        </tr>
+        <ng-template ngFor let-o [ngForOf]="getOrders()">
+            <tr>
+                <td>{{o.id}}</td>
+                <td>{{o.creationDate}}</td>
+                <td>{{o.user?.name}} {{o.user?.lastname}}</td>
+                <th>Account</th>
+                <th>Account email</th>
+                <th>Subtotal</th>
+                <td>
+                    <button class="btn btn-danger" (click)="delete(o.id? o.id: 0)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            <tr *ngFor="let orderDetail of o.orderDetails">
+                <td colspan="3"></td>
+                <td>{{orderDetail.account?.accountType?.name}} Account</td>
+                <td>{{orderDetail.account?.email}}</td>
+                <td>{{orderDetail.subTotal}}</td>
+            </tr>
+            <tr>
+                <th colspan="5"></th>
+                <th>total</th>
+            </tr>
+            <tr>
+                <th colspan="5"></th>
+                <th>{{o.total}}</th>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>

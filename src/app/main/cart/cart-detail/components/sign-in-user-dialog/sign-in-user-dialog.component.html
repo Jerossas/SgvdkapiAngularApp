@@ -1,0 +1,24 @@
+<h2>Before checking out you must log in</h2>
+<div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="errorMessage != null">
+    {{errorMessage}}
+</div>
+<div class="p-2">
+    <form novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
+        <div>
+            <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" name="email" [(ngModel)]="email" required />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input class="form-control" type="password" name="password" [(ngModel)]="password" required />
+            </div>
+
+            <p>Create an account <button (click)="goToSignUpComponent()">create account</button></p>
+        </div>        
+        <div class="text-center">
+            <button class="btn btn-secondary m-1" (click)="closeDialog()">Go back</button>
+            <button class="btn btn-primary m-1" type="submit">Log In</button>
+        </div>
+    </form>
+</div>

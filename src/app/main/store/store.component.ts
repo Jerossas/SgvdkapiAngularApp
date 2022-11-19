@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/authentication/auth/service/storage.service';
 import { Cart } from '../cart/cart.model';
+import { LoggedInMessageDialogComponent } from './components/logged-in-message-dialog/logged-in-message-dialog.component';
 import { AccountViewDto } from './dto/AccountViewDto';
-import { AccountType } from './model/AccountType';
 import { AccountService } from './service/account.service';
 
 @Component({
@@ -17,9 +19,12 @@ export class StoreComponent implements OnInit {
   public selectedPage = 1;
 
   constructor(private accountService: AccountService, private cart: Cart,
-    private router: Router) { }
+    private router: Router, private storageService: StorageService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(this.storageService.isLoggedIn()){
+      this.dialog.open(LoggedInMessageDialogComponent)
+    }
   }
 
   get accounts(): AccountViewDto[] {
@@ -51,7 +56,7 @@ export class StoreComponent implements OnInit {
   }
 
   addAccountToCart(account: AccountViewDto) {
-    this.cart.addLine(account);
+    this.cart.addOrderDetail(account, 1, `${account.accountType} acccount`);
     this.router.navigateByUrl("/cart");
   }
 }

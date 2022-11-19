@@ -1,4 +1,4 @@
-import { AccountType } from "../model/AccountType";
+import { AccountType } from "../model/account/AccountType";
 import { AccountProfileViewDto } from "./AccountProfileViewDto";
 
 export interface AccountViewDto {

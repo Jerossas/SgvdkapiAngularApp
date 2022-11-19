@@ -3,7 +3,7 @@
         <tr>
             <th>ID</th>
             <th>Email</th>
-            <th>Category</th>
+            <th>Account type</th>
             <th>Price</th>
             <th></th>
         </tr>
@@ -15,16 +15,19 @@
             <td>{{a.accountType?.name}}</td>
             <td>{{a.price | currency:"USD":"symbol":"2.2-2"}}</td>
             <td>
-                <button class="btn btn-sm btn-warning" [routerLink]="['/admin/main/products/edit', a.id]">
+                <button class="btn btn-sm btn-outline-info mr-2" (click)="openDialog(a.id?a.id:0)">
+                    View
+                </button>
+                <button class="btn btn-sm btn-warning mr-2" [routerLink]="['/admin/main/accounts/edit', a.id]">
                     Edit
                 </button>
-                <button class="btn btn-sm btn-danger" (click)="deleteAccount(a.id? a.id: 0)">
+                <button class="btn btn-sm btn-danger mr-2" (click)="deleteAccount(a.id?a.id:0)">
                     Delete
                 </button>
             </td>
         </tr>
     </tbody>
 </table>
-<button class="btn btn-primary" routerLink="/admin/main/products/create">
+<button class="btn btn-primary" routerLink="/admin/main/accounts/create">
     Create New Account
 </button>

@@ -1,0 +1,72 @@
+<div *ngIf="accountProfiles.length <= 0 && action === 'View' ">
+    <h3>This account does not have any profile</h3>
+</div>
+
+<div *ngIf="action === 'View' ">
+    <h2>Profiles</h2>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Pin</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ap of accountProfiles">
+                <td>{{ap.id}}</td>
+                <td>{{ap.name}}</td>
+                <td>{{ap.pin}}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning mr-2" (click)="changeAction('Edit', ap.id?ap.id:0)">
+                        Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger mr-2" (click)="deleteProfile(ap.id?ap.id:0)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="changeAction('Create', 0)">
+        Create New Profile
+    </button>
+</div>
+
+<div *ngIf="action === 'Edit' ">
+    <h2>Editing</h2>
+
+    <form novalidate #form="ngForm" (ngSubmit)="updateAccountProfile(form)">
+        <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" name="name" [(ngModel)]="accountProfile.name" />
+        </div>
+        <div class="form-group">
+            <label>Pin</label>
+            <input class="form-control" name="pin" [(ngModel)]="accountProfile.pin" />
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Edit
+        </button>
+        <button class="btn btn-secondary" (click)="changeAction('View', 0)">back</button>
+    </form>
+</div>
+
+<div *ngIf="action === 'Create' ">
+    <h2>Creating</h2>
+    <form novalidate #form="ngForm" (ngSubmit)="saveAccountProfile(form)">
+        <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" name="name" [(ngModel)]="accountProfile.name" />
+        </div>
+        <div class="form-group">
+            <label>Pin</label>
+            <input class="form-control" name="pin" [(ngModel)]="accountProfile.pin" />
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Create
+        </button>
+        <button class="btn btn-secondary" (click)="changeAction('View', 0)">back</button>
+    </form>
+</div>

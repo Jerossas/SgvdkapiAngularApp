@@ -6,18 +6,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3 p-2">
-            <button class="btn btn-block btn-outline-primary" (click)="changeType(null)">
-                Home
-            </button>
-            <button *ngFor="let accountType of accountTypes" class="btn btn-outline-primary btn-block"
-                [class.active]="accountType == selectedType" (click)="changeType(accountType)">
-                {{accountType}}
-            </button>
-            <button class="btn btn-block btn-danger m-t-3" routerLink="/admin">
-                Admin
-            </button>
-        </div>
         <div class="col-9 p-2">
             <div *ngFor="let account of accounts" class="card m-1 p-1 bg-light">
                 <h4>
@@ -49,6 +37,21 @@
                     {{page}}
                 </button>
             </div>
+        </div>
+        <div class="col-3 p-2">
+            <button class="btn btn-block btn-outline-primary" (click)="changeType(null)">
+                Home
+            </button>
+            <button *ngFor="let accountType of accountTypes" class="btn btn-outline-primary btn-block"
+                [class.active]="accountType == selectedType" (click)="changeType(accountType)">
+                {{accountType}}
+            </button>
+            <button class="btn btn-block btn-danger m-t-3" routerLink="/auth">
+                Log in
+            </button>
+            <button class="btn btn-block btn-outline-primary" routerLink="/sign-up">
+                Sign Up
+            </button>
         </div>
     </div>
 </div>

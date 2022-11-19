@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { AccountViewDto } from '../dto/AccountViewDto';
-import { AccountType } from '../model/AccountType';
+import { AccountType } from '../model/account/AccountType';
 
 @Injectable({
   providedIn: 'root'

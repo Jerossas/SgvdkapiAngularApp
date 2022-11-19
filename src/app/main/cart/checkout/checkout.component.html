@@ -1,1 +1,58 @@
-<p>checkout works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col bg-dark text-white">
+            <a class="navbar-brand">SPORTS STORE</a>
+        </div>
+    </div>
+</div>
+<div *ngIf="orderSent" class="m-2 text-center">
+    <h2>Purchase order!</h2>
+    <p>Thanks for placing your interest in Digital KH.</p>
+    <p>check all information and proceed to payment</p>
+    <button class="btn btn-primary" routerLink="/store">Return to Store</button>
+</div>
+<div *ngIf="!orderSent">
+    <div>
+        <div>
+            <h2>Order information</h2>
+            <p>Name: {{ user.name }} {{ user.lastname }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Phone: {{ user.phone }}</p>
+        </div>
+        <div>
+            <h2>Accounts</h2>
+            <table class="table table-bordered table-striped p-2">
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Account</th>
+                        <th>Description</th>
+                        <th class="text-right">Precio</th>
+                        <th class="text-right">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let orderDetail of cart.orderDetails">
+                        <td>
+                            <input type="number" class="form-control-sm" style="width:5em" [value]="orderDetail.quantity" disabled
+                            />
+                        </td>
+                        <td>{{orderDetail.account.accountType.name}} Acccount</td>
+                        <td>{{ orderDetail.account.description }}</td>
+                        <td class="text-right">
+                            {{orderDetail.account.price | currency:"USD":true:"2.2-2"}}
+                        </td>
+                        <td class="text-right">
+                            {{(orderDetail.subTotal) | currency:"USD":true:"2.2-2" }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <h2>Order overview</h2>
+        <p>Total {{ cart.total | currency:"USD":true:"2.2-2"}}</p>
+        <button class="btn btn-primary" routerLink="">Generate</button>
+    </div>
+</div>

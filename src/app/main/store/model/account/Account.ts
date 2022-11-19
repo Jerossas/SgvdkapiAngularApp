@@ -1,7 +1,7 @@
 import { AccountProfile } from "./AccountProfile";
 import { AccountType } from "./AccountType";
 
-export class AccountC {
+export class Account {
     constructor(
         public id?: number,
         public email?: string,

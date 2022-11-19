@@ -1,0 +1,112 @@
+.card {
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
+    transition: 200ms;
+    background: #fff;
+    max-width: 720px;
+    margin: 5% auto;
+}
+
+.card .card__title {
+    display: flex;
+    align-items: center;
+    padding: 30px 40px;
+}
+
+.card .card__title h3 {
+    flex: 0 1 200px;
+    text-align: right;
+    margin: 0;
+    color: #252525;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.card .card__title .icon {
+    flex: 1 0 10px;
+    background: #115dd8;
+    color: #fff;
+    padding: 10px 10px;
+    transition: 200ms;
+}
+
+.card .card__title .icon>a {
+    color: #fff;
+}
+
+.card .card__title .icon:hover {
+    background: #252525;
+}
+
+.card .card__body {
+    padding: 0 40px;
+    display: flex;
+    flex-flow: row no-wrap;
+    margin-bottom: 25px;
+}
+
+.card .card__body>.half {
+    box-sizing: border-box;
+    padding: 0 15px;
+    flex: 1 0 50%;
+}
+
+.card .card__body .featured_text h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 800;
+    font-family: "Montserrat", sans-serif;
+    font-size: 64px;
+    line-height: 50px;
+    color: #181e28;
+}
+
+.card .card__body .featured_text p {
+    margin: 0;
+    padding: 0;
+}
+
+.card .card__body .featured_text p.sub {
+    font-family: "Montserrat", sans-serif;
+    font-size: 26px;
+    text-transform: uppercase;
+    color: #686e77;
+    font-weight: 300;
+    margin-bottom: 5px;
+    margin-top: 5;
+}
+
+.card .card__body .image {
+    padding-top: 15px;
+    width: 100%;
+}
+
+.card .card__body .image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #115dd8;
+    color: #115dd8;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    transition: 200ms;
+}
+
+button:hover {
+    background: #fff;
+    color: #115dd8;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 20px;
+    color: #686e77;
+}

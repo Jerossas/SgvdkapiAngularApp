@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit {
 
   isLoggedIn = false;
   isLoginFailed = false;
-  roles: string[] = [];
+  role: string = "";
 
   constructor(private router: Router, private auth: AuthService, private storageService: StorageService) {
     this.email = "";
@@ -27,8 +27,8 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
-      this.router.navigateByUrl("/admin/main");
+      this.role = this.storageService.getUser().role;
+      this.router.navigateByUrl("/admin/main/accounts");
     }
   }
 
@@ -40,8 +40,12 @@ export class AuthComponent implements OnInit {
   
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.roles = this.storageService.getUser().roles;
-          //this.router.navigateByUrl("/admin/main");
+          this.role = this.storageService.getUser().role;
+          if(this.role === 'ROLE_ADMIN'){
+            this.router.navigateByUrl("/admin/main/accounts");
+          } else {
+            this.router.navigateByUrl("/store");
+          }          
         },
         error: err => {
           this.errorMessage = err.error.message;

@@ -12,31 +12,33 @@
                     <tr>
                         <th>Cantidad</th>
                         <th>Account</th>
+                        <th>Description</th>
                         <th class="text-right">Precio</th>
                         <th class="text-right">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngIf="cart.lines.length == 0">
+                    <tr *ngIf="cart.orderDetails.length == 0">
                         <td colspan="4" class="text-center">
                             CARRITO VACIO
                         </td>
                     </tr>
-                    <tr *ngFor="let line of cart.lines">
+                    <tr *ngFor="let orderDetail of cart.orderDetails">
                         <td>
-                            <input type="number" class="form-control-sm" style="width:5em" [value]="line.quantity"
-                                (change)="cart.updateQuantity(line.account,
+                            <input type="number" class="form-control-sm" style="width:5em" [value]="orderDetail.quantity"
+                                (change)="cart.updateQuantity(orderDetail.account,
     $any($event.target).value)" />
                         </td>
-                        <td>{{line.account.accountType.name}}</td>
+                        <td>{{orderDetail.account.accountType.name}} Account</td>
+                        <td>{{ orderDetail.account.description }}</td>
                         <td class="text-right">
-                            {{line.account.price | currency:"USD":true:"2.2-2"}}
+                            {{orderDetail.account.price | currency:"USD":true:"2.2-2"}}
                         </td>
                         <td class="text-right">
-                            {{(line.lineTotal) | currency:"USD":true:"2.2-2" }}
+                            {{(orderDetail.subTotal) | currency:"USD":true:"2.2-2" }}
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.account.id)">
+                            <button class="btn btn-sm btn-danger" (click)="cart.removeOrderDetail(orderDetail.account.id)">
                                 Remove
                             </button>
                         </td>
@@ -44,9 +46,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3" class="text-right">Total:</td>
+                        <td colspan="4" class="text-right">Total:</td>
                         <td class="text-right">
-                            {{cart.cartPrice | currency:"USD":"symbol":"2.2-2"}}
+                            {{cart.total| currency:"USD":"symbol":"2.2-2"}}
                         </td>
                     </tr>
                 </tfoot>
@@ -59,7 +61,7 @@
                 <button class="btn btn-primary m-1" routerLink="/store">
                     Continue Shopping
                 </button>
-                <button class="btn btn-secondary m-1" routerLink="/checkout" [disabled]="cart.lines.length == 0">
+                <button class="btn btn-secondary m-1" (click)="checkIfUserLoggedIn()" [disabled]="cart.orderDetails.length == 0">
                     Checkout
                 </button>
             </div>
